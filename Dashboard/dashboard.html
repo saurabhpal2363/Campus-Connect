@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Campus Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Sidebar overlay (mobile) -->
+<div class="sidebar-overlay" id="sideOverlay" onclick="closeSidebar()"></div>
+
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <div class="brand-logo">🔗</div>
+    <div class="brand-name">CampusConnect</div>
+  </div>
+
+  <div class="nav-group-label">Discover</div>
+  <div class="nav-item active" data-page="feed" onclick="nav(this)"><span class="ni">▶️</span> Feed</div>
+  <div class="nav-item" data-page="explore" onclick="nav(this)"><span class="ni">🧭</span> Explore</div>
+  <div class="nav-item" data-page="network" onclick="nav(this)"><span class="ni">👥</span> My Network</div>
+
+  <div class="nav-group-label">Create</div>
+  <div class="nav-item" data-page="ideas" onclick="nav(this)"><span class="ni">💡</span> Ideas</div>
+  <div class="nav-item" data-page="projects" onclick="nav(this)"><span class="ni">🚀</span> Projects</div>
+  <div class="nav-item" data-page="upload" onclick="nav(this)"><span class="ni">📹</span> Upload Reel</div>
+
+  <div class="nav-group-label">Campus</div>
+  <div class="nav-item" data-page="events" onclick="nav(this)"><span class="ni">📅</span> Events</div>
+  <div class="nav-item" data-page="messages" onclick="nav(this)"><span class="ni">💬</span> Messages</div>
+
+  <div class="sidebar-footer">
+    <div class="user-row">
+      <div class="u-av">S</div>
+      <div>
+        <div class="u-name">Saurabh</div>
+        <div class="u-dept">CSE · Year 2</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ── APP WRAP ── -->
+<div class="app-wrap" id="appWrap">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="hamburger" id="hamburger" onclick="toggleSidebar()">☰</div>
+      <div class="page-title" id="pageTitle">Feed</div>
+    </div>
+    <div class="topbar-right">
+      <div class="search-wrap"><span>🔍</span><input type="text" placeholder="Search…"/></div>
+      <div class="t-btn">🔔<span class="notif-dot"></span></div>
+      <div class="t-btn" onclick="nav(document.querySelector('[data-page=upload]'))">➕</div>
+    </div>
+  </div>
+
+  <!-- PAGES -->
+  <div class="pages">
+
+    <!-- ══════════════ FEED PAGE ══════════════ -->
+    <div class="page active" id="page-feed">
+      <div class="feed-layout">
+        <!-- Left: reels -->
+        <div>
+          <div class="feed-tabs">
+            <div class="f-tab active" onclick="fTab(this)">For You</div>
+            <div class="f-tab" onclick="fTab(this)">Following</div>
+            <div class="f-tab" onclick="fTab(this)">Trending</div>
+            <div class="f-tab" onclick="fTab(this)">Near Me</div>
+          </div>
+
+          <!-- Reel 1 -->
+          <div class="reel-card now-playing" data-vid="1" onclick="toggleReel(this)">
+            <div class="vid-area" style="background:linear-gradient(135deg,#0f0c29,#302b63,#24243e)">
+              <div class="vid-bg"><div class="vid-big-icon">🤖</div><div class="vid-sub">AI & Machine Learning</div></div>
+              <div class="play-ring" id="prb-1">⏸</div>
+              <div class="vid-overlay"><div class="vid-title">How I built an emotion-aware study bot in 48 hrs</div><div class="vid-meta">3:42 · 1.2K views</div></div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="pf-1" style="width:34%"></div></div>
+            <div class="reel-foot">
+              <div class="rc-av" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">RA</div>
+              <div class="rc-info"><div class="rc-name">Riya Anand</div><div class="rc-tags">#AI · #HackProject · CSE Y2</div></div>
+              <div class="rc-actions">
+                <div class="rc-btn liked" onclick="like(event,this)">❤️ 284</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">💬 42</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">↗</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reel 2 -->
+          <div class="reel-card" data-vid="2" onclick="toggleReel(this)">
+            <div class="vid-area" style="background:linear-gradient(135deg,#1B4332,#2D6A4F,#52B788)">
+              <div class="vid-bg"><div class="vid-big-icon">🌱</div><div class="vid-sub">Sustainability</div></div>
+              <div class="play-ring" id="prb-2">▶</div>
+              <div class="vid-overlay"><div class="vid-title">Zero-waste campus project — 3 month update</div><div class="vid-meta">5:10 · 874 views</div></div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="pf-2"></div></div>
+            <div class="reel-foot">
+              <div class="rc-av" style="background:linear-gradient(135deg,#059669,#34D399)">SM</div>
+              <div class="rc-info"><div class="rc-name">Sahil Mehta</div><div class="rc-tags">#Sustainability · ENV Y3</div></div>
+              <div class="rc-actions">
+                <div class="rc-btn" onclick="like(event,this)">🤍 156</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">💬 19</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">↗</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reel 3 -->
+          <div class="reel-card" data-vid="3" onclick="toggleReel(this)">
+            <div class="vid-area" style="background:linear-gradient(135deg,#370617,#6A040F,#D00000)">
+              <div class="vid-bg"><div class="vid-big-icon">🚀</div><div class="vid-sub">Startup & Entrepreneurship</div></div>
+              <div class="play-ring" id="prb-3">▶</div>
+              <div class="vid-overlay"><div class="vid-title">Pitch deck teardown: what investors actually want</div><div class="vid-meta">6:28 · 2.1K views</div></div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="pf-3"></div></div>
+            <div class="reel-foot">
+              <div class="rc-av" style="background:linear-gradient(135deg,#DC2626,#F59E0B)">PK</div>
+              <div class="rc-info"><div class="rc-name">Priya Kapoor</div><div class="rc-tags">#Startup · #Pitch · MBA Y1</div></div>
+              <div class="rc-actions">
+                <div class="rc-btn" onclick="like(event,this)">🤍 543</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">💬 87</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">↗</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reel 4 -->
+          <div class="reel-card" data-vid="4" onclick="toggleReel(this)">
+            <div class="vid-area" style="background:linear-gradient(135deg,#1e1b4b,#4338ca,#6d28d9)">
+              <div class="vid-bg"><div class="vid-big-icon">🎨</div><div class="vid-sub">Design & UX</div></div>
+              <div class="play-ring" id="prb-4">▶</div>
+              <div class="vid-overlay"><div class="vid-title">5 UX patterns Gen Z actually loves</div><div class="vid-meta">4:15 · 996 views</div></div>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="pf-4"></div></div>
+            <div class="reel-foot">
+              <div class="rc-av" style="background:linear-gradient(135deg,#6366F1,#EC4899)">VN</div>
+              <div class="rc-info"><div class="rc-name">Vani Nair</div><div class="rc-tags">#UIDesign · Design Y2</div></div>
+              <div class="rc-actions">
+                <div class="rc-btn" onclick="like(event,this)">🤍 321</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">💬 55</div>
+                <div class="rc-btn" onclick="event.stopPropagation()">↗</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- end left col -->
+
+        <!-- Right side -->
+        <div class="feed-side">
+          <div class="side-card">
+            <div class="sec-head" style="margin-bottom:12px"><div class="sec-title">Your Network</div></div>
+            <div class="stat-grid">
+              <div class="stat-box"><div class="stat-val">248</div><div class="stat-lbl">Connections</div><div class="stat-d up">↑ 12 this week</div></div>
+              <div class="stat-box"><div class="stat-val">1.4K</div><div class="stat-lbl">Reel Views</div><div class="stat-d up">↑ 340 today</div></div>
+              <div class="stat-box"><div class="stat-val">7</div><div class="stat-lbl">Projects</div><div class="stat-d up">↑ 2 new</div></div>
+              <div class="stat-box"><div class="stat-val">92%</div><div class="stat-lbl">Match Score</div><div class="stat-d up">Top 5%</div></div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <div class="sec-head"><div class="sec-title">🔥 Trending</div><div class="sec-link">All</div></div>
+            <div>
+              <div class="trend-row"><div class="tr-num">1</div><div class="tr-info"><div class="tr-tag">#HackAIFest</div><div class="tr-count">1,240 posts</div></div><span class="tag r">HOT</span></div>
+              <div class="trend-row"><div class="tr-num">2</div><div class="tr-info"><div class="tr-tag">#ZeroWaste2025</div><div class="tr-count">874 posts</div></div><span class="tag g">NEW</span></div>
+              <div class="trend-row"><div class="tr-num">3</div><div class="tr-info"><div class="tr-tag">#StartupPitch</div><div class="tr-count">642 posts</div></div><span class="tag a">↑</span></div>
+              <div class="trend-row"><div class="tr-num">4</div><div class="tr-info"><div class="tr-tag">#ResearchDay</div><div class="tr-count">511 posts</div></div><span class="tag g">NEW</span></div>
+            </div>
+          </div>
+
+          <div class="side-card">
+            <div class="sec-head"><div class="sec-title">🎯 Suggested</div><div class="sec-link">More</div></div>
+            <div>
+              <div class="match-row"><div class="mr-av" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">NK</div><div class="mr-info"><div class="mr-name">Naina Kapoor</div><div class="mr-sub">AI · Design · CSE Y2</div></div><div class="mr-btn" onclick="connect(this)">+ Connect</div></div>
+              <div class="match-row"><div class="mr-av" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">RS</div><div class="mr-info"><div class="mr-name">Rohan Sharma</div><div class="mr-sub">ML · Startup · ECE Y3</div></div><div class="mr-btn" onclick="connect(this)">+ Connect</div></div>
+              <div class="match-row"><div class="mr-av" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">AG</div><div class="mr-info"><div class="mr-name">Ananya Gupta</div><div class="mr-sub">Research · BIO Y4</div></div><div class="mr-btn" onclick="connect(this)">+ Connect</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ EXPLORE PAGE ══════════════ -->
+    <div class="page" id="page-explore">
+      <div class="explore-search"><span>🔍</span><input type="text" placeholder="Search people, interests, clubs…"/></div>
+      <div class="interest-chips">
+        <div class="i-chip active" onclick="toggleChip(this)">All</div>
+        <div class="i-chip" onclick="toggleChip(this)">🤖 AI/ML</div>
+        <div class="i-chip" onclick="toggleChip(this)">🎨 Design</div>
+        <div class="i-chip" onclick="toggleChip(this)">🚀 Startup</div>
+        <div class="i-chip" onclick="toggleChip(this)">🔬 Research</div>
+        <div class="i-chip" onclick="toggleChip(this)">🌱 Sustainability</div>
+        <div class="i-chip" onclick="toggleChip(this)">🎵 Music</div>
+        <div class="i-chip" onclick="toggleChip(this)">📊 Finance</div>
+        <div class="i-chip" onclick="toggleChip(this)">✍️ Writing</div>
+      </div>
+      <div class="sec-head"><div class="sec-title">People You May Know</div><div class="sec-link">Filter</div></div>
+      <div class="people-grid">
+        <div class="people-card"><div class="pc-av" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">NK</div><div class="pc-name">Naina Kapoor</div><div class="pc-dept">CSE · Year 2</div><div class="pc-tags"><span class="tag g">AI</span><span class="tag b">Design</span></div><div class="pc-match">97% match</div><button class="btn btn-dark pc-btn" onclick="connect(this)">+ Connect</button></div>
+        <div class="people-card"><div class="pc-av" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">RS</div><div class="pc-name">Rohan Sharma</div><div class="pc-dept">ECE · Year 3</div><div class="pc-tags"><span class="tag p">ML</span><span class="tag a">Startup</span></div><div class="pc-match">94% match</div><button class="btn btn-dark pc-btn" onclick="connect(this)">+ Connect</button></div>
+        <div class="people-card"><div class="pc-av" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">AG</div><div class="pc-name">Ananya Gupta</div><div class="pc-dept">BioTech · Year 4</div><div class="pc-tags"><span class="tag r">Research</span><span class="tag b">Writing</span></div><div class="pc-match">91% match</div><button class="btn btn-dark pc-btn" onclick="connect(this)">+ Connect</button></div>
+        <div class="people-card"><div class="pc-av" style="background:linear-gradient(135deg,#0EA5E9,#6366F1)">KP</div><div class="pc-name">Karan Patel</div><div class="pc-dept">EE · Year 2</div><div class="pc-tags"><span class="tag b">Code</span><span class="tag a">Robotics</span></div><div class="pc-match">88% match</div><button class="btn btn-dark pc-btn" onclick="connect(this)">+ Connect</button></div>
+        <div class="people-card"><div class="pc-av" style="background:linear-gradient(135deg,#059669,#065F46)">MM</div><div class="pc-name">Megha Mishra</div><div class="pc-dept">MGT · Year 1</div><div class="pc-tags"><span class="tag g">Sustainability</span></div><div class="pc-match">85% match</div><button class="btn btn-dark pc-btn" onclick="connect(this)">+ Connect</button></div>
+        <div class="people-card"><div class="pc-av" style="background:linear-gradient(135deg,#DC2626,#7C3AED)">VR</div><div class="pc-name">Vikram Rao</div><div class="pc-dept">Design · Year 3</div><div class="pc-tags"><span class="tag p">UX</span><span class="tag r">Branding</span></div><div class="pc-match">82% match</div><button class="btn btn-dark pc-btn" onclick="connect(this)">+ Connect</button></div>
+      </div>
+    </div>
+
+    <!-- ══════════════ NETWORK PAGE ══════════════ -->
+    <div class="page" id="page-network">
+      <div class="network-tabs">
+        <div class="n-tab active" onclick="nTab(this)">Connections (248)</div>
+        <div class="n-tab" onclick="nTab(this)">Requests (5)</div>
+        <div class="n-tab" onclick="nTab(this)">Sent</div>
+      </div>
+      <div class="conn-list">
+        <div class="conn-item"><div class="ci-av" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">RA</div><div class="ci-info"><div class="ci-name">Riya Anand</div><div class="ci-sub">CSE Year 2 · Connected 2 weeks ago</div><div class="ci-tags"><span class="tag g">AI</span><span class="tag b">HackProject</span></div></div><div class="ci-actions"><button class="btn btn-outline" style="font-size:12px;padding:6px 12px">Message</button><button class="btn btn-dark" style="font-size:12px;padding:6px 12px">Profile</button></div></div>
+        <div class="conn-item"><div class="ci-av" style="background:linear-gradient(135deg,#059669,#34D399)">SM</div><div class="ci-info"><div class="ci-name">Sahil Mehta</div><div class="ci-sub">ENV Year 3 · Connected 1 month ago</div><div class="ci-tags"><span class="tag g">Sustainability</span><span class="tag a">CampusLife</span></div></div><div class="ci-actions"><button class="btn btn-outline" style="font-size:12px;padding:6px 12px">Message</button><button class="btn btn-dark" style="font-size:12px;padding:6px 12px">Profile</button></div></div>
+        <div class="conn-item"><div class="ci-av" style="background:linear-gradient(135deg,#DC2626,#F59E0B)">PK</div><div class="ci-info"><div class="ci-name">Priya Kapoor</div><div class="ci-sub">MBA Year 1 · Connected 3 days ago</div><div class="ci-tags"><span class="tag r">Startup</span><span class="tag a">Pitch</span></div></div><div class="ci-actions"><button class="btn btn-outline" style="font-size:12px;padding:6px 12px">Message</button><button class="btn btn-dark" style="font-size:12px;padding:6px 12px">Profile</button></div></div>
+        <div class="conn-item"><div class="ci-av" style="background:linear-gradient(135deg,#6366F1,#EC4899)">VN</div><div class="ci-info"><div class="ci-name">Vani Nair</div><div class="ci-sub">Design Year 2 · Connected 1 week ago</div><div class="ci-tags"><span class="tag p">UIDesign</span><span class="tag b">UX Research</span></div></div><div class="ci-actions"><button class="btn btn-outline" style="font-size:12px;padding:6px 12px">Message</button><button class="btn btn-dark" style="font-size:12px;padding:6px 12px">Profile</button></div></div>
+        <div class="conn-item"><div class="ci-av" style="background:linear-gradient(135deg,#7C3AED,#C026D3)">AG</div><div class="ci-info"><div class="ci-name">Aditi Gupta</div><div class="ci-sub">BioTech Year 4 · Connected 5 days ago</div><div class="ci-tags"><span class="tag b">Research</span><span class="tag p">IEEE</span></div></div><div class="ci-actions"><button class="btn btn-outline" style="font-size:12px;padding:6px 12px">Message</button><button class="btn btn-dark" style="font-size:12px;padding:6px 12px">Profile</button></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════ IDEAS PAGE ══════════════ -->
+    <div class="page" id="page-ideas">
+      <div class="idea-post-box">
+        <div class="ipb-top">
+          <div class="u-av">S</div>
+          <div class="ipb-input">Share your idea with like-minded peers…</div>
+        </div>
+        <div class="ipb-actions">
+          <div class="ipb-tag-chip">💡 Idea</div>
+          <div class="ipb-tag-chip">🔍 Looking for teammates</div>
+          <div class="ipb-tag-chip">🧠 Concept</div>
+          <button class="btn btn-dark" style="margin-left:auto">Post</button>
+        </div>
+      </div>
+      <div class="ideas-grid">
+        <div class="idea-card"><div class="ic-head"><div class="ic-av" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">RA</div><div class="ic-meta"><div class="ic-name">Riya Anand</div><div class="ic-time">2 hours ago</div></div></div><div class="ic-title">Emotion-aware study assistant using facial recognition</div><div class="ic-body">What if your study app could detect when you're frustrated and automatically switch topics or take a break?</div><div class="ic-tags"><span class="tag g">AI</span><span class="tag b">EdTech</span><span class="tag p">ML</span></div><div class="ic-foot"><div class="ic-action liked">❤️ 47</div><div class="ic-action">💬 12</div><div class="ic-action">🤝 Collaborate</div></div></div>
+        <div class="idea-card"><div class="ic-head"><div class="ic-av" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">RS</div><div class="ic-meta"><div class="ic-name">Rohan Sharma</div><div class="ic-time">5 hours ago</div></div></div><div class="ic-title">Peer-to-peer skill exchange marketplace on campus</div><div class="ic-body">Students trade skills — I'll teach you Python, you teach me guitar. No money, just time credits.</div><div class="ic-tags"><span class="tag a">Startup</span><span class="tag g">Community</span></div><div class="ic-foot"><div class="ic-action">🤍 89</div><div class="ic-action">💬 23</div><div class="ic-action">🤝 Collaborate</div></div></div>
+        <div class="idea-card"><div class="ic-head"><div class="ic-av" style="background:linear-gradient(135deg,#059669,#34D399)">SM</div><div class="ic-meta"><div class="ic-name">Sahil Mehta</div><div class="ic-time">Yesterday</div></div></div><div class="ic-title">Blockchain-based transparent college elections</div><div class="ic-body">Eliminate doubts about election integrity with an immutable blockchain voting system for student body elections.</div><div class="ic-tags"><span class="tag b">Blockchain</span><span class="tag r">CivicTech</span></div><div class="ic-foot"><div class="ic-action">🤍 134</div><div class="ic-action">💬 41</div><div class="ic-action">🤝 Collaborate</div></div></div>
+        <div class="idea-card"><div class="ic-head"><div class="ic-av" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">PK</div><div class="ic-meta"><div class="ic-name">Priya Kapoor</div><div class="ic-time">2 days ago</div></div></div><div class="ic-title">AR campus navigation for freshers</div><div class="ic-body">Point your phone and get directions overlaid on the real world. Never get lost on a huge campus again.</div><div class="ic-tags"><span class="tag p">AR</span><span class="tag b">MobileApp</span></div><div class="ic-foot"><div class="ic-action">🤍 203</div><div class="ic-action">💬 58</div><div class="ic-action">🤝 Collaborate</div></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════ PROJECTS PAGE ══════════════ -->
+    <div class="page" id="page-projects">
+      <div class="proj-filters">
+        <div class="pf-btn active" onclick="pfBtn(this)">All</div>
+        <div class="pf-btn" onclick="pfBtn(this)">Open</div>
+        <div class="pf-btn" onclick="pfBtn(this)">My Projects</div>
+        <div class="pf-btn" onclick="pfBtn(this)">AI/ML</div>
+        <div class="pf-btn" onclick="pfBtn(this)">Design</div>
+        <div class="pf-btn" onclick="pfBtn(this)">Startup</div>
+      </div>
+      <div class="proj-grid">
+        <div class="proj-card"><div class="proj-banner" style="background:linear-gradient(135deg,#0f0c29,#302b63)">🤖</div><div class="proj-body"><div class="proj-name">EduBot AI</div><div class="proj-desc">Building an LLM-powered personalised tutoring system for college students using open-source models.</div><div class="proj-tags"><span class="tag g">AI</span><span class="tag b">LLM</span><span class="tag p">EdTech</span></div><div class="proj-foot"><div class="proj-members"><div class="pm-av" style="background:#22C55E">R</div><div class="pm-av" style="background:#3B82F6">S</div><div class="pm-av" style="background:#F59E0B">P</div></div><span class="proj-spots">2 spots left</span><div class="proj-join" onclick="joinProj(this)">Join →</div></div></div></div>
+        <div class="proj-card"><div class="proj-banner" style="background:linear-gradient(135deg,#1B4332,#2D6A4F)">🌱</div><div class="proj-body"><div class="proj-name">CampusEats</div><div class="proj-desc">Food waste tracker for college canteens — reducing waste by 40% with smart ordering predictions.</div><div class="proj-tags"><span class="tag g">Sustainability</span><span class="tag a">DataScience</span></div><div class="proj-foot"><div class="proj-members"><div class="pm-av" style="background:#059669">M</div><div class="pm-av" style="background:#7C3AED">A</div></div><span class="proj-spots">3 spots left</span><div class="proj-join" onclick="joinProj(this)">Join →</div></div></div></div>
+        <div class="proj-card"><div class="proj-banner" style="background:linear-gradient(135deg,#1e1b4b,#4338ca)">🎨</div><div class="proj-body"><div class="proj-name">DesignSprint Club</div><div class="proj-desc">Weekly design challenges and critique sessions. Building a portfolio of real-world UI/UX case studies.</div><div class="proj-tags"><span class="tag p">Design</span><span class="tag b">UX</span><span class="tag r">Portfolio</span></div><div class="proj-foot"><div class="proj-members"><div class="pm-av" style="background:#6366F1">V</div><div class="pm-av" style="background:#EC4899">N</div><div class="pm-av" style="background:#F59E0B">K</div></div><span class="proj-spots">5 spots left</span><div class="proj-join" onclick="joinProj(this)">Join →</div></div></div></div>
+        <div class="proj-card"><div class="proj-banner" style="background:linear-gradient(135deg,#370617,#9D0208)">📡</div><div class="proj-body"><div class="proj-name">IoT Smart Dorm</div><div class="proj-desc">Automating dorm room energy usage with raspberry pi sensors and a custom dashboard.</div><div class="proj-tags"><span class="tag r">IoT</span><span class="tag a">Hardware</span><span class="tag b">Python</span></div><div class="proj-foot"><div class="proj-members"><div class="pm-av" style="background:#DC2626">R</div><div class="pm-av" style="background:#0EA5E9">K</div></div><span class="proj-spots">4 spots left</span><div class="proj-join" onclick="joinProj(this)">Join →</div></div></div></div>
+      </div>
+    </div>
+
+    <!-- ══════════════ UPLOAD REEL PAGE ══════════════ -->
+    <div class="page" id="page-upload">
+      <div style="margin-bottom:20px"><div class="sec-title" style="font-size:18px">📹 Upload Reel</div><div style="font-size:13px;color:var(--ink3);margin-top:4px">Share your ideas, projects & stories with the campus</div></div>
+      <div class="upload-layout">
+        <div class="upload-zone" id="uploadZone" onclick="triggerUpload()">
+          <div class="uz-icon" id="uzIcon">📁</div>
+          <div class="uz-title" id="uzTitle">Drop your video here</div>
+          <div class="uz-sub" id="uzSub">or click to browse</div>
+          <div class="uz-formats">MP4, MOV, AVI · Max 500MB</div>
+          <input type="file" id="fileInput" accept="video/*" style="display:none" onchange="fileSelected(this)"/>
+        </div>
+        <div class="upload-form">
+          <div class="form-group">
+            <label class="form-label">Title *</label>
+            <input class="form-input" type="text" placeholder="Give your reel a catchy title…"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea class="form-input" placeholder="What's this reel about?"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-input">
+              <option>Select a category</option>
+              <option>AI / Machine Learning</option>
+              <option>Design & UX</option>
+              <option>Startup & Business</option>
+              <option>Research & Science</option>
+              <option>Sustainability</option>
+              <option>Campus Life</option>
+              <option>Coding & Dev</option>
+              <option>Arts & Music</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Tags</label>
+            <div class="form-tags">
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#AI</div>
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#Design</div>
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#Startup</div>
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#Research</div>
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#HackProject</div>
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#CampusLife</div>
+              <div class="form-tag" onclick="this.classList.toggle('sel')">#Tutorial</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Visibility</label>
+            <select class="form-input">
+              <option>Everyone on campus</option>
+              <option>My connections only</option>
+              <option>Same department</option>
+            </select>
+          </div>
+          <div class="upload-progress" id="uploadProgress">
+            <div class="up-label"><span id="upStatus">Uploading…</span><span id="upPct">0%</span></div>
+            <div class="up-track"><div class="up-fill" id="upFill"></div></div>
+          </div>
+          <div class="upload-actions">
+            <button class="btn btn-outline" style="flex:1">Save Draft</button>
+            <button class="btn btn-dark" style="flex:2" onclick="startUpload()">🚀 Publish Reel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ EVENTS PAGE ══════════════ -->
+    <div class="page" id="page-events">
+      <div class="events-layout">
+        <div>
+          <div class="sec-head"><div class="sec-title">Upcoming Events</div><div class="sec-link">+ Create Event</div></div>
+          <div class="events-list">
+            <div class="event-card"><div class="event-date-block" style="background:#F0FDF4;color:#22C55E"><div class="edb-day">10</div><div class="edb-mon">MAR</div></div><div class="event-body"><div class="ev-title">HackAI Fest 2025</div><div class="ev-meta">📍 CS Block · 9 AM – 9 PM · 340 going</div><div class="ev-tags"><span class="tag g">Hackathon</span><span class="tag b">AI</span></div></div><div class="event-action"><div class="ev-btn going">✓ Going</div></div></div>
+            <div class="event-card"><div class="event-date-block" style="background:#EFF6FF;color:#3B82F6"><div class="edb-day">14</div><div class="edb-mon">MAR</div></div><div class="event-body"><div class="ev-title">Design Sprint Workshop</div><div class="ev-meta">📍 Innovation Lab · 2 PM – 6 PM · 85 going</div><div class="ev-tags"><span class="tag p">Design</span><span class="tag a">Workshop</span></div></div><div class="event-action"><div class="ev-btn" onclick="goEvent(this)">RSVP →</div></div></div>
+            <div class="event-card"><div class="event-date-block" style="background:#FFFBEB;color:#F59E0B"><div class="edb-day">19</div><div class="edb-mon">MAR</div></div><div class="event-body"><div class="ev-title">Startup Pitch Night</div><div class="ev-meta">📍 Main Auditorium · 6 PM – 9 PM · 210 going</div><div class="ev-tags"><span class="tag a">Startup</span><span class="tag r">Networking</span></div></div><div class="event-action"><div class="ev-btn going">✓ Going</div></div></div>
+            <div class="event-card"><div class="event-date-block" style="background:#F5F3FF;color:#8B5CF6"><div class="edb-day">22</div><div class="edb-mon">MAR</div></div><div class="event-body"><div class="ev-title">Research Symposium</div><div class="ev-meta">📍 Seminar Hall · 10 AM – 5 PM · 156 going</div><div class="ev-tags"><span class="tag p">Research</span><span class="tag b">IEEE</span></div></div><div class="event-action"><div class="ev-btn" onclick="goEvent(this)">RSVP →</div></div></div>
+            <div class="event-card"><div class="event-date-block" style="background:#FEF2F2;color:#EF4444"><div class="edb-day">28</div><div class="edb-mon">MAR</div></div><div class="event-body"><div class="ev-title">Sustainability Summit</div><div class="ev-meta">📍 Open Amphitheatre · All day · 400 going</div><div class="ev-tags"><span class="tag g">Sustainability</span><span class="tag a">Panel</span></div></div><div class="event-action"><div class="ev-btn" onclick="goEvent(this)">RSVP →</div></div></div>
+          </div>
+        </div>
+        <div class="mini-cal">
+          <div class="cal-head"><div class="cal-month">March 2026</div><div style="display:flex;gap:6px"><div class="cal-nav">‹</div><div class="cal-nav">›</div></div></div>
+          <div class="cal-grid">
+            <div class="cal-dow">Su</div><div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div>
+            <div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day">1</div>
+            <div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day today">7</div><div class="cal-day">8</div>
+            <div class="cal-day">9</div><div class="cal-day has-event">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day has-event">14</div><div class="cal-day">15</div>
+            <div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day has-event">19</div><div class="cal-day">20</div><div class="cal-day">21</div><div class="cal-day has-event">22</div>
+            <div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day has-event">28</div><div class="cal-day">29</div>
+            <div class="cal-day">30</div><div class="cal-day">31</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ MESSAGES PAGE ══════════════ -->
+    <div class="page" id="page-messages">
+      <div class="msg-layout" id="msgLayout">
+        <div class="msg-list">
+          <div class="msg-list-head">
+            <div class="msg-list-title">Messages</div>
+            <div class="msg-search"><span>🔍</span><input type="text" placeholder="Search chats…"/></div>
+          </div>
+          <div class="msg-scroll">
+            <div class="conv-row active" onclick="openChat(this,'Riya Anand','RA','#22C55E,#3B82F6','Online')"><div class="cv-av" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">RA<span class="cv-online"></span></div><div class="cv-info"><div class="cv-name">Riya Anand</div><div class="cv-preview">Let's collaborate on the AI bot!</div></div><div class="cv-right"><div class="cv-time">2m</div><div class="cv-badge">2</div></div></div>
+            <div class="conv-row" onclick="openChat(this,'Sahil Mehta','SM','#059669,#34D399','Online')"><div class="cv-av" style="background:linear-gradient(135deg,#059669,#34D399)">SM<span class="cv-online"></span></div><div class="cv-info"><div class="cv-name">Sahil Mehta</div><div class="cv-preview">Can you review my project proposal?</div></div><div class="cv-right"><div class="cv-time">1h</div></div></div>
+            <div class="conv-row" onclick="openChat(this,'Priya Kapoor','PK','#DC2626,#F59E0B','Away')"><div class="cv-av" style="background:linear-gradient(135deg,#DC2626,#F59E0B)">PK</div><div class="cv-info"><div class="cv-name">Priya Kapoor</div><div class="cv-preview">The pitch deck is almost ready</div></div><div class="cv-right"><div class="cv-time">3h</div><div class="cv-badge">1</div></div></div>
+            <div class="conv-row" onclick="openChat(this,'Vani Nair','VN','#6366F1,#EC4899','Offline')"><div class="cv-av" style="background:linear-gradient(135deg,#6366F1,#EC4899)">VN</div><div class="cv-info"><div class="cv-name">Vani Nair</div><div class="cv-preview">Design feedback on my latest reel</div></div><div class="cv-right"><div class="cv-time">1d</div></div></div>
+            <div class="conv-row" onclick="openChat(this,'Karan Patel','KP','#0EA5E9,#6366F1','Online')"><div class="cv-av" style="background:linear-gradient(135deg,#0EA5E9,#6366F1)">KP<span class="cv-online"></span></div><div class="cv-info"><div class="cv-name">Karan Patel</div><div class="cv-preview">IoT sensor readings look weird</div></div><div class="cv-right"><div class="cv-time">2d</div></div></div>
+          </div>
+        </div>
+        <div class="chat-pane">
+          <div class="chat-head">
+            <div class="ch-av" id="chatAv" style="background:linear-gradient(135deg,#22C55E,#3B82F6)">RA</div>
+            <div><div class="ch-name" id="chatName">Riya Anand</div><div class="ch-status" id="chatStatus">● Online</div></div>
+            <div class="chat-actions"><div class="ca-btn">📞</div><div class="ca-btn">🎥</div><div class="ca-btn">⋯</div></div>
+          </div>
+          <div class="chat-messages" id="chatMessages">
+            <div class="msg-bubble msg-in">Hey Saurabh! Loved your idea about the campus app 🔥<span class="msg-time">10:30 AM</span></div>
+            <div class="msg-bubble msg-out">Thanks Riya! I was thinking we could collaborate on the AI module?<span class="msg-time">10:32 AM</span></div>
+            <div class="msg-bubble msg-in">Yes absolutely! I've been working on emotion detection. We could integrate it.<span class="msg-time">10:33 AM</span></div>
+            <div class="msg-bubble msg-out">That sounds perfect. When are you free to meet?<span class="msg-time">10:35 AM</span></div>
+            <div class="msg-bubble msg-in">Let's collaborate on the AI bot! Tomorrow evening works?<span class="msg-time">2m ago</span></div>
+          </div>
+          <div class="chat-input-area">
+            <div class="ca-btn" style="flex-shrink:0">😊</div>
+            <input class="chat-input" id="chatInput" type="text" placeholder="Type a message…" onkeydown="sendMsg(event)"/>
+            <div class="ca-btn" style="flex-shrink:0">📎</div>
+            <div class="send-btn" onclick="sendMsg({key:'Enter'})">➤</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end pages -->
+</div><!-- end app-wrap -->
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav">
+  <div class="bn-items">
+    <div class="bn-item active" data-page="feed" onclick="nav(this)"><div class="bn-icon">▶️</div><span>Feed</span></div>
+    <div class="bn-item" data-page="explore" onclick="nav(this)"><div class="bn-icon">🧭</div><span>Explore</span></div>
+    <div class="bn-item" data-page="ideas" onclick="nav(this)"><div class="bn-icon">💡</div><span>Ideas</span></div>
+    <div class="bn-item" data-page="events" onclick="nav(this)"><div class="bn-icon">📅</div><span>Events</span></div>
+    <div class="bn-item" data-page="messages" onclick="nav(this)"><div class="bn-icon">💬</div><span>Chat</span></div>
+  </div>
+</nav>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

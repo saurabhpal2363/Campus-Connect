@@ -77,5 +77,5 @@
 
     localStorage.setItem('campusconnect_profile', JSON.stringify(profile));
     document.getElementById('submitBtn').textContent = '✅ Profile saved! Redirecting…';
-    setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+    setTimeout(() => { window.location.href = 'Dashboard/dashboard.html'; }, 900);
   });
