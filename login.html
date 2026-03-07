@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CampusConnect — Find Your Team</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #060612;
+      --card: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.10);
+      --accent1: #7c3aed;
+      --accent2: #06b6d4;
+      --accent3: #f59e0b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --input-bg: rgba(255,255,255,0.06);
+      --input-border: rgba(255,255,255,0.12);
+      --input-focus: rgba(124,58,237,0.5);
+      --radius: 14px;
+      --tag-bg: rgba(124,58,237,0.18);
+      --tag-active: rgba(124,58,237,0.55);
+      --tag-border: rgba(124,58,237,0.35);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated mesh background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(124,58,237,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 80%, rgba(6,182,212,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 50%, rgba(245,158,11,0.06) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Noise overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* Floating orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+      animation: drift 12s ease-in-out infinite alternate;
+    }
+    .orb1 { width: 400px; height: 400px; background: var(--accent1); top: -100px; left: -100px; animation-duration: 14s; }
+    .orb2 { width: 300px; height: 300px; background: var(--accent2); bottom: -80px; right: -80px; animation-duration: 10s; }
+    .orb3 { width: 200px; height: 200px; background: var(--accent3); top: 40%; left: 60%; animation-duration: 18s; }
+
+    @keyframes drift {
+      from { transform: translate(0, 0) scale(1); }
+      to   { transform: translate(30px, 20px) scale(1.08); }
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 620px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      padding: 44px 40px 48px;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07);
+      animation: slideUp 0.6s cubic-bezier(0.22,1,0.36,1) both;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo / Header */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: linear-gradient(135deg, var(--accent1), var(--accent2));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      box-shadow: 0 0 20px rgba(124,58,237,0.4);
+    }
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.3rem;
+      background: linear-gradient(90deg, #fff 40%, var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      background: rgba(6,182,212,0.1);
+      border: 1px solid rgba(6,182,212,0.2);
+      border-radius: 99px;
+      padding: 3px 10px;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 6px;
+    }
+    h1 span {
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .subtitle {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    /* Section label */
+    .section-label {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin: 24px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Grid */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+    /* Input group */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    input, select {
+      background: var(--input-bg);
+      border: 1px solid var(--input-border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      padding: 11px 16px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+      width: 100%;
+    }
+    input::placeholder { color: rgba(148,163,184,0.4); }
+    input:focus, select:focus {
+      border-color: var(--accent1);
+      box-shadow: 0 0 0 3px var(--input-focus);
+      background: rgba(255,255,255,0.08);
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      cursor: pointer;
+    }
+    select option { background: #1e1b4b; color: #fff; }
+
+    /* Password wrapper */
+    .pw-wrap { position: relative; }
+    .pw-wrap input { padding-right: 44px; }
+    .pw-toggle {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+    .pw-toggle:hover { color: var(--text); }
+
+    /* Tags multi-select */
+    .tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      cursor: pointer;
+      user-select: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 99px;
+      border: 1px solid var(--tag-border);
+      background: var(--tag-bg);
+      color: rgba(200,180,255,0.9);
+      transition: all 0.18s;
+    }
+    .tag:hover { background: rgba(124,58,237,0.35); transform: translateY(-1px); }
+    .tag.active {
+      background: var(--tag-active);
+      border-color: rgba(167,139,250,0.6);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(124,58,237,0.35);
+    }
+
+    /* Interest tags — teal accent */
+    .interest-tag {
+      border-color: rgba(6,182,212,0.3);
+      background: rgba(6,182,212,0.10);
+      color: rgba(150,230,240,0.9);
+    }
+    .interest-tag:hover { background: rgba(6,182,212,0.25); }
+    .interest-tag.active {
+      background: rgba(6,182,212,0.38);
+      border-color: rgba(6,182,212,0.7);
+      color: #fff;
+      box-shadow: 0 0 12px rgba(6,182,212,0.3);
+    }
+
+    /* CTA Button */
+    .btn {
+      width: 100%;
+      margin-top: 32px;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius);
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--accent1) 0%, #4f46e5 50%, var(--accent2) 100%);
+      background-size: 200% 200%;
+      color: #fff;
+      transition: transform 0.18s, box-shadow 0.18s;
+      box-shadow: 0 4px 24px rgba(124,58,237,0.45);
+      animation: gradShift 4s ease infinite;
+    }
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(124,58,237,0.55); }
+    .btn:active { transform: translateY(0); }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    /* Divider */
+    .divider {
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+    .divider a { color: var(--accent2); text-decoration: none; font-weight: 500; }
+    .divider a:hover { text-decoration: underline; }
+
+    /* Error / validation */
+    .err { font-size: 0.72rem; color: #f87171; margin-top: 2px; display: none; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #fca5a5;
+      padding: 12px 24px;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      backdrop-filter: blur(12px);
+      z-index: 100;
+      transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* Responsive */
+    @media (max-width: 580px) {
+      .card { padding: 32px 22px 40px; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 380px) {
+      .card { padding: 28px 16px 36px; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+<div class="orb orb3"></div>
+
+<div class="card">
+
+  <div class="logo">
+    <div class="logo-icon">🔗</div>
+    <span class="logo-text">CampusConnect</span>
+  </div>
+
+  <div class="header-tag">Beta · Free for students</div>
+
+  <h1>Build your <span>dream team</span>.</h1>
+  <p class="subtitle">Set up your profile and find the right people for your next hackathon or project.</p>
+
+  <!-- BASIC INFO -->
+  <div class="section-label">Basic Info</div>
+
+  <div class="grid-2" style="margin-bottom:14px;">
+    <div class="field">
+      <label for="fullname">Full Name</label>
+      <input id="fullname" type="text" placeholder="e.g. Aarav Sharma" autocomplete="name"/>
+      <span class="err" id="err-fullname">Name is required</span>
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" placeholder="you@college.edu" autocomplete="email"/>
+      <span class="err" id="err-email">Valid email required</span>
+    </div>
+  </div>
+
+  <div class="field" style="margin-bottom:14px;">
+    <label for="password">Password</label>
+    <div class="pw-wrap">
+      <input id="password" type="password" placeholder="Create a strong password" autocomplete="new-password"/>
+      <button class="pw-toggle" id="togglePw" tabindex="-1" type="button">👁</button>
+    </div>
+    <span class="err" id="err-password">Password must be at least 6 characters</span>
+  </div>
+
+  <!-- ACADEMIC INFO -->
+  <div class="section-label">Academic Info</div>
+
+  <div class="field" style="margin-bottom:14px;">
+    <label for="college">College Name</label>
+    <input id="college" type="text" placeholder="e.g. IIT Bombay / VIT Vellore" />
+    <span class="err" id="err-college">College name is required</span>
+  </div>
+
+  <div class="grid-3" style="margin-bottom:14px;">
+    <div class="field">
+      <label for="year">Year</label>
+      <select id="year">
+        <option value="">Select</option>
+        <option>1st Year</option>
+        <option>2nd Year</option>
+        <option>3rd Year</option>
+        <option>4th Year</option>
+      </select>
+      <span class="err" id="err-year">Select year</span>
+    </div>
+    <div class="field">
+      <label for="branch">Branch</label>
+      <select id="branch">
+        <option value="">Select</option>
+        <option>CSE</option>
+        <option>IT</option>
+        <option>ECE</option>
+        <option>EEE</option>
+        <option>Mechanical</option>
+        <option>Civil</option>
+        <option>Chemical</option>
+        <option>Aerospace</option>
+        <option>BioTech</option>
+        <option>MCA</option>
+        <option>MBA</option>
+        <option>Other</option>
+      </select>
+      <span class="err" id="err-branch">Select branch</span>
+    </div>
+    <div class="field">
+      <label for="roll">Roll Number</label>
+      <input id="roll" type="text" placeholder="e.g. 21CS1001"/>
+      <span class="err" id="err-roll">Roll number required</span>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="section-label">Skills <span style="font-size:0.65rem;margin-left:4px;font-family:'DM Sans';text-transform:none;letter-spacing:0;color:#7c3aed;font-style:italic;">pick all that apply</span></div>
+
+  <div class="tags-wrap" id="skills-wrap">
+    <span class="tag" data-val="Java">☕ Java</span>
+    <span class="tag" data-val="Python">🐍 Python</span>
+    <span class="tag" data-val="Web Development">🌐 Web Dev</span>
+    <span class="tag" data-val="UI/UX">🎨 UI/UX</span>
+    <span class="tag" data-val="Machine Learning">🤖 ML</span>
+    <span class="tag" data-val="Data Science">📊 Data Science</span>
+    <span class="tag" data-val="Android">📱 Android</span>
+    <span class="tag" data-val="Cloud">☁️ Cloud</span>
+  </div>
+  <span class="err" id="err-skills">Pick at least one skill</span>
+
+  <!-- INTERESTS -->
+  <div class="section-label" style="margin-top:22px;">Interests</div>
+
+  <div class="tags-wrap" id="interests-wrap">
+    <span class="tag interest-tag" data-val="Hackathons">⚡ Hackathons</span>
+    <span class="tag interest-tag" data-val="Open Source">🌱 Open Source</span>
+    <span class="tag interest-tag" data-val="Startups">🚀 Startups</span>
+    <span class="tag interest-tag" data-val="Competitive Programming">🏆 CP</span>
+    <span class="tag interest-tag" data-val="AI Research">🧠 AI Research</span>
+    <span class="tag interest-tag" data-val="Game Dev">🎮 Game Dev</span>
+  </div>
+  <span class="err" id="err-interests">Pick at least one interest</span>
+
+  <button class="btn" id="submitBtn" type="button">Launch My Profile →</button>
+
+  <div class="divider" style="margin-top:18px;">
+    Already have a profile? <a href="dashboard.html">View Dashboard →</a>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Password toggle
+  document.getElementById('togglePw').addEventListener('click', () => {
+    const pw = document.getElementById('password');
+    pw.type = pw.type === 'password' ? 'text' : 'password';
+  });
+
+  // Tag selection
+  function setupTags(wrapId) {
+    const wrap = document.getElementById(wrapId);
+    wrap.querySelectorAll('.tag').forEach(tag => {
+      tag.addEventListener('click', () => tag.classList.toggle('active'));
+    });
+  }
+  setupTags('skills-wrap');
+  setupTags('interests-wrap');
+
+  function getSelected(wrapId) {
+    return [...document.querySelectorAll(`#${wrapId} .tag.active`)].map(t => t.dataset.val);
+  }
+
+  // Toast
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3200);
+  }
+
+  // Validate
+  function validate() {
+    let ok = true;
+    const checks = [
+      ['fullname',  v => v.trim().length > 1,          'err-fullname'],
+      ['email',     v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), 'err-email'],
+      ['password',  v => v.length >= 6,                 'err-password'],
+      ['college',   v => v.trim().length > 1,           'err-college'],
+      ['year',      v => v !== '',                       'err-year'],
+      ['branch',    v => v !== '',                       'err-branch'],
+      ['roll',      v => v.trim().length > 0,            'err-roll'],
+    ];
+    checks.forEach(([id, test, errId]) => {
+      const el = document.getElementById(id);
+      const errEl = document.getElementById(errId);
+      const pass = test(el.value);
+      errEl.style.display = pass ? 'none' : 'block';
+      el.style.borderColor = pass ? '' : '#f87171';
+      if (!pass) ok = false;
+    });
+
+    const skills = getSelected('skills-wrap');
+    const errS = document.getElementById('err-skills');
+    errS.style.display = skills.length ? 'none' : 'block';
+    if (!skills.length) ok = false;
+
+    const interests = getSelected('interests-wrap');
+    const errI = document.getElementById('err-interests');
+    errI.style.display = interests.length ? 'none' : 'block';
+    if (!interests.length) ok = false;
+
+    return ok;
+  }
+
+  document.getElementById('submitBtn').addEventListener('click', () => {
+    if (!validate()) { showToast('⚠️ Please fill all required fields'); return; }
+
+    const profile = {
+      fullname:   document.getElementById('fullname').value.trim(),
+      email:      document.getElementById('email').value.trim(),
+      college:    document.getElementById('college').value.trim(),
+      year:       document.getElementById('year').value,
+      branch:     document.getElementById('branch').value,
+      roll:       document.getElementById('roll').value.trim(),
+      skills:     getSelected('skills-wrap'),
+      interests:  getSelected('interests-wrap'),
+      joined:     new Date().toLocaleDateString('en-IN', { month: 'long', year: 'numeric' }),
+    };
+
+    localStorage.setItem('campusconnect_profile', JSON.stringify(profile));
+    document.getElementById('submitBtn').textContent = '✅ Profile saved! Redirecting…';
+    setTimeout(() => { window.location.href = 'dashboard.html'; }, 900);
+  });
+</script>
+</body>
+</html>
