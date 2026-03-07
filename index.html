@@ -1,141 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CampusConnect — Find Your Team</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>CampusConnect — Create Account</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Fraunces:ital,wght@0,300;1,300;1,600;1,900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
-<div class="orb orb3"></div>
-
-<div class="card">
-
-  <div class="logo">
-    <div class="logo-icon">🔗</div>
-    <span class="logo-text">Campus Connect</span>
+<!-- ══════ LEFT ══════ -->
+<aside class="lp">
+  <div class="lp-bg">
+    <div class="lp-orb lp-orb-1"></div>
+    <div class="lp-orb lp-orb-2"></div>
+    <div class="lp-orb lp-orb-3"></div>
   </div>
+  <div class="lp-grid"></div>
 
-  <div class="header-tag">Beta · Free for students</div>
-
-  <h1>Build your <span>dream team</span>.</h1>
-  <p class="subtitle">Set up your profile and find the right people for your next hackathon or project.</p>
-
-  <!-- BASIC INFO -->
-  <div class="section-label">Basic Info</div>
-
-  <div class="grid-2" style="margin-bottom:14px;">
-    <div class="field">
-      <label for="fullname">Full Name</label>
-      <input id="fullname" type="text" placeholder="e.g. Saurabh Kumar" autocomplete="name"/>
-      <span class="err" id="err-fullname">Name is required</span>
+  <div class="lp-inner">
+    <div>
+      <div class="lp-brand">
+        <div class="lp-logo">🔗</div>
+        <div class="lp-bname">CampusConnect</div>
+      </div>
+      <div class="lp-pill">
+        <div class="lp-pill-led"></div>
+        <div class="lp-pill-txt">Beta · Free for students</div>
+      </div>
     </div>
-    <div class="field">
-      <label for="email">Email</label>
-      <input id="email" type="email" placeholder="you@college.edu" autocomplete="email"/>
-      <span class="err" id="err-email">Valid email required</span>
-    </div>
-  </div>
 
-  <div class="field" style="margin-bottom:14px;">
-    <label for="password">Password</label>
-    <div class="pw-wrap">
-      <input id="password" type="password" placeholder="Create a strong password" autocomplete="new-password"/>
-      <button class="pw-toggle" id="togglePw" tabindex="-1" type="button">👁</button>
+    <div class="lp-hero">
+      <div class="lp-tag">
+        <div class="lp-tag-line"></div>
+        Student collaboration platform
+      </div>
+      <h1 class="lp-h1">Build your<br><span class="hi">dream team.</span></h1>
+      <p class="lp-desc">Meet builders, designers and researchers from your campus. Get matched by skills and interests — not luck.</p>
     </div>
-    <span class="err" id="err-password">Password must be at least 6 characters</span>
-  </div>
 
-  <!-- ACADEMIC INFO -->
-  <div class="section-label">Academic Info</div>
+    <div>
+      <div class="lp-stats">
+        <div class="lp-stat">
+          <div class="lp-sv">12K+</div>
+          <div class="lp-sl">Students</div>
+        </div>
+        <div class="lp-stat">
+          <div class="lp-sv">840</div>
+          <div class="lp-sl">Projects</div>
+        </div>
+        <div class="lp-stat">
+          <div class="lp-sv">96%</div>
+          <div class="lp-sl">Match rate</div>
+        </div>
+      </div>
 
-  <div class="field" style="margin-bottom:14px;">
-    <label for="college">College Name</label>
-    <input id="college" type="text" placeholder="e.g. IIT Bombay / VIT Vellore" />
-    <span class="err" id="err-college">College name is required</span>
-  </div>
-
-  <div class="grid-3" style="margin-bottom:14px;">
-    <div class="field">
-      <label for="year">Year</label>
-      <select id="year">
-        <option value="">Select</option>
-        <option>1st Year</option>
-        <option>2nd Year</option>
-        <option>3rd Year</option>
-        <option>4th Year</option>
-      </select>
-      <span class="err" id="err-year">Select year</span>
-    </div>
-    <div class="field">
-      <label for="branch">Branch</label>
-      <select id="branch">
-        <option value="">Select</option>
-        <option>CSE</option>
-        <option>IT</option>
-        <option>ECE</option>
-        <option>EEE</option>
-        <option>Mechanical</option>
-        <option>Civil</option>
-        <option>Chemical</option>
-        <option>Aerospace</option>
-        <option>BioTech</option>
-        <option>MCA</option>
-        <option>MBA</option>
-        <option>Other</option>
-      </select>
-      <span class="err" id="err-branch">Select branch</span>
-    </div>
-    <div class="field">
-      <label for="roll">Roll Number</label>
-      <input id="roll" type="text" placeholder="e.g. 21CS1001"/>
-      <span class="err" id="err-roll">Roll number required</span>
+      <div class="lp-proof">
+        <div class="lp-avs">
+          <div class="lp-av">SK</div>
+          <div class="lp-av">RA</div>
+          <div class="lp-av">VN</div>
+          <div class="lp-av">+</div>
+        </div>
+        <div class="lp-proof-txt"><strong>280 students</strong> joined this week</div>
+      </div>
     </div>
   </div>
 
-  <!-- SKILLS -->
-  <div class="section-label">Skills <span style="font-size:0.65rem;margin-left:4px;font-family:'DM Sans';text-transform:none;letter-spacing:0;color:#7c3aed;font-style:italic;">pick all that apply</span></div>
-
-  <div class="tags-wrap" id="skills-wrap">
-    <span class="tag" data-val="Java">☕ Java</span>
-    <span class="tag" data-val="Python">🐍 Python</span>
-    <span class="tag" data-val="Web Development">🌐 Web Dev</span>
-    <span class="tag" data-val="UI/UX">🎨 UI/UX</span>
-    <span class="tag" data-val="Machine Learning">🤖 ML</span>
-    <span class="tag" data-val="Data Science">📊 Data Science</span>
-    <span class="tag" data-val="Android">📱 Android</span>
-    <span class="tag" data-val="Cloud">☁️ Cloud</span>
+  <!-- floating card -->
+  <div class="lp-float">
+    <div class="lf-head">Your match score</div>
+    <div class="lf-item">
+      <div class="lf-left"><div class="lf-pip" style="background:#A99AFF"></div><div class="lf-name">UI / UX Design</div></div>
+      <div class="lf-pct">94%</div>
+    </div>
+    <div class="lf-item">
+      <div class="lf-left"><div class="lf-pip" style="background:#00C896"></div><div class="lf-name">AI / ML</div></div>
+      <div class="lf-pct">88%</div>
+    </div>
+    <div class="lf-item">
+      <div class="lf-left"><div class="lf-pip" style="background:#FF84BC"></div><div class="lf-name">Startup</div></div>
+      <div class="lf-pct">81%</div>
+    </div>
+    <div class="lf-sep"></div>
+    <div class="lf-bar-row">
+      <div class="lf-bar-track"><div class="lf-bar-fill"></div></div>
+      <div class="lf-bar-val">82%</div>
+    </div>
   </div>
-  <span class="err" id="err-skills">Pick at least one skill</span>
+</aside>
 
-  <!-- INTERESTS -->
-  <div class="section-label" style="margin-top:22px;">Interests</div>
-
-  <div class="tags-wrap" id="interests-wrap">
-    <span class="tag interest-tag" data-val="Hackathons">⚡ Hackathons</span>
-    <span class="tag interest-tag" data-val="Open Source">🌱 Open Source</span>
-    <span class="tag interest-tag" data-val="Startups">🚀 Startups</span>
-    <span class="tag interest-tag" data-val="Competitive Programming">🏆 CP</span>
-    <span class="tag interest-tag" data-val="AI Research">🧠 AI Research</span>
-    <span class="tag interest-tag" data-val="Game Dev">🎮 Game Dev</span>
-  </div>
-  <span class="err" id="err-interests">Pick at least one interest</span>
-
-  <button class="btn" id="submitBtn" type="button">Launch My Profile →</button>
-
-  <div class="divider" style="margin-top:18px;">
-    Already have a profile? <a href="Dashboard/dashboard.html">View Dashboard →</a>
+<!-- ══════ RIGHT ══════ -->
+<main class="rp">
+  <div class="rp-deco">
+    <div class="rp-deco-orb1"></div>
+    <div class="rp-deco-orb2"></div>
+    <div class="rp-deco-dots"></div>
   </div>
 
-</div>
+  <div class="rp-inner">
 
-<!-- Toast -->
-<div class="toast" id="toast"></div>
+    <!-- topbar -->
+    <div class="rp-top">
+      <div class="steps">
+        <div class="step">
+          <div class="step-node active" id="s1" data-lbl="Account">1</div>
+        </div>
+        <div class="step-bridge" id="b1"></div>
+        <div class="step">
+          <div class="step-node" id="s2" data-lbl="Profile">2</div>
+        </div>
+        <div class="step-bridge" id="b2"></div>
+        <div class="step">
+          <div class="step-node" id="s3" data-lbl="Done">3</div>
+        </div>
+      </div>
+      <div class="rp-signin">Already a member? <a href="#">Sign in</a></div>
+    </div>
 
+    <!-- headline -->
+    <h2 class="rp-headline">Join <span class="hl">CampusConnect</span></h2>
+    <p class="rp-sub">Set up your profile in 2 minutes. We'll use your info to find your best campus matches — teammates, collaborators, co-founders.</p>
+
+    <!-- AVATAR UPLOAD -->
+    <div class="av-card" onclick="document.getElementById('avFile').click()">
+      <div class="av-ring">
+        <span id="avEmoji">🙂</span>
+        <img id="avImg" src="" alt=""/>
+        <div class="av-overlay">📷</div>
+      </div>
+      <input type="file" id="avFile" accept="image/*" style="display:none" onchange="pickAvatar(this)"/>
+      <div class="av-body">
+        <div class="av-title">Add Profile Photo</div>
+        <div class="av-hint">Students with photos get 3× more connections</div>
+      </div>
+      <button class="av-btn" type="button" onclick="event.stopPropagation();document.getElementById('avFile').click()">Upload ↑</button>
+    </div>
+
+    <!-- BASIC INFO -->
+    <div class="sdiv v"><div class="sdiv-lbl">Basic Info</div></div>
+
+    <div class="fg c2">
+      <div class="f">
+        <label><span class="dot"></span>Full Name</label>
+        <input type="text" id="fullName" placeholder="e.g. Saurabh Kumar" oninput="vBasic(this)" autocomplete="name"/>
+      </div>
+      <div class="f">
+        <label><span class="dot"></span>Email Address</label>
+        <input type="email" id="email" placeholder="you@college.edu" oninput="vEmail(this)" autocomplete="email"/>
+      </div>
+    </div>
+
+    <div class="fg c1" style="margin-top:14px">
+      <div class="f">
+        <label><span class="dot"></span>Password</label>
+        <div class="pw-shell">
+          <input type="password" id="password" placeholder="Create a strong password (8+ characters)" oninput="vPw(this)" autocomplete="new-password"/>
+          <button class="pw-eye" type="button" onclick="togglePw(this)" tabindex="-1">👁</button>
+        </div>
+        <div class="str-track"><div class="str-fill" id="sfill"></div></div>
+        <div class="str-msg" id="smsg"></div>
+      </div>
+    </div>
+
+    <!-- ACADEMIC INFO -->
+    <div class="sdiv v"><div class="sdiv-lbl">Academic Info</div></div>
+
+    <div class="fg c1" style="margin-bottom:14px">
+      <div class="f">
+        <label>College / University</label>
+        <input type="text" id="college" placeholder="e.g. IIT Bombay, VIT Vellore, BITS Pilani…" oninput="vBasic(this)"/>
+      </div>
+    </div>
+
+    <div class="fg c3">
+      <div class="f">
+        <label>Year</label>
+        <select id="year" onchange="vSelect(this)">
+          <option value="">Select year</option>
+          <option>Year 1</option><option>Year 2</option>
+          <option>Year 3</option><option>Year 4</option><option>Postgrad</option>
+        </select>
+      </div>
+      <div class="f">
+        <label>Branch</label>
+        <select id="branch" onchange="vSelect(this)">
+          <option value="">Select branch</option>
+          <option>CSE</option><option>ECE</option><option>EE</option>
+          <option>ME</option><option>Civil</option><option>BioTech</option>
+          <option>Design</option><option>MBA</option><option>Other</option>
+        </select>
+      </div>
+      <div class="f">
+        <label>Roll Number</label>
+        <input type="text" placeholder="e.g. 21CS1001" oninput="vBasic(this)"/>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="sdiv v"><div class="sdiv-lbl">Skills</div></div>
+
+    <div class="skill-row">
+      <div class="skill-note">Pick everything that applies</div>
+      <div class="skill-count" id="skillCount">2 selected</div>
+    </div>
+    <div class="chips-wrap">
+      <div class="chip on" onclick="toggleChip(this)"><span class="chip-ico">☕</span>Java</div>
+      <div class="chip on" onclick="toggleChip(this)"><span class="chip-ico">🐍</span>Python</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🌐</span>Web Dev</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🎨</span>UI / UX</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🤖</span>ML / AI</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">📱</span>Mobile</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">☁️</span>DevOps</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">📊</span>Data Science</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🔒</span>Security</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🎮</span>Game Dev</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🔬</span>Research</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🚀</span>Startup</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">🎵</span>Music Tech</div>
+      <div class="chip" onclick="toggleChip(this)"><span class="chip-ico">⚙️</span>Embedded</div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="sdiv v"><div class="sdiv-lbl">About You</div></div>
+
+    <div class="fg c1">
+      <div class="f">
+        <label>Short Bio</label>
+        <textarea id="bio" placeholder="What are you building? What kind of teammates are you looking for? What's your superpower?" maxlength="200" oninput="updateChar(this)"></textarea>
+        <div class="char-row">
+          <span class="char-tip">Keep it genuine and specific</span>
+          <span class="char-count" id="charCount">0 / 200</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="submit-wrap">
+      <button class="cta-btn" id="ctaBtn" type="button" onclick="doSubmit()">
+        <div class="cta-inner">Find my people <span class="cta-arrow">→</span></div>
+      </button>
+
+      <div class="or-line">or sign up with</div>
+
+      <div class="soc-row">
+        <button class="soc-btn" type="button">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+          </svg>
+          Google
+        </button>
+        <button class="soc-btn" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor" color="#24292e">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+          GitHub
+        </button>
+        <button class="soc-btn" type="button">
+          <svg viewBox="0 0 24 24" fill="#0A66C2">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          LinkedIn
+        </button>
+      </div>
+
+      <p class="terms">By joining you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. We never sell your data.</p>
+    </div>
+
+  </div>
+</main>
 <script src="script.js"></script>
 </body>
 </html>
