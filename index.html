@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Campus Connect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+    <div class="brand">
+        <div class="brand-icon">🔗</div>
+        <div class="brand-name">CampusConnect</div>
+    </div>
+
+    <div class="nav-section">Discover</div>
+    <div class="nav-item active"><span class="icon">▶️</span> Feed</div>
+    <div class="nav-item"><span class="icon">🧭</span> Explore</div>
+    <div class="nav-item"><span class="icon">👥</span> My Network</div>
+
+    <div class="nav-section">Create</div>
+    <div class="nav-item"><span class="icon">💡</span> Ideas</div>
+    <div class="nav-item"><span class="icon">🚀</span> Projects</div>
+    <div class="nav-item"><span class="icon">📹</span> Upload Reel</div>
+
+    <div class="nav-section">Campus</div>
+    <div class="nav-item"><span class="icon">📅</span> Events</div>
+    <div class="nav-item"><span class="icon">💬</span> Messages</div>
+
+    <div class="sidebar-footer">
+        <div class="user-row">
+        <div class="user-avatar">S</div>
+        <div class="user-meta">
+            <div class="user-name">Saurabh</div>
+            <div class="user-dept">CSE · Year 2</div>
+        </div>
+        </div>
+    </div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <div class="main">
+
+    <!-- CENTER FEED -->
+    <div class="center">
+        <div class="topbar">
+        <div class="topbar-title">For You 🎯</div>
+        <div class="topbar-right">
+            <div class="search">
+            <span>🔍</span>
+            <input type="text" placeholder="Search ideas, people, topics…"/>
+            </div>
+            <div class="btn-icon">🔔<span class="notif-dot"></span></div>
+        </div>
+        </div>
+
+        <div class="reel-tabs">
+        <div class="reel-tab active" onclick="switchTab(this)">For You</div>
+        <div class="reel-tab" onclick="switchTab(this)">Following</div>
+        <div class="reel-tab" onclick="switchTab(this)">Trending</div>
+        <div class="reel-tab" onclick="switchTab(this)">Near Me</div>
+        </div>
+
+        <!-- REEL FEED -->
+        <div class="reel-feed" id="reelFeed">
+
+        <!-- Reel 1 -->
+        <div class="reel-card playing" data-id="1" onclick="togglePlay(this)">
+            <div class="reel-video-wrap vid-bg-1">
+            <div class="vid-placeholder">
+                <div class="vid-icon-big">🤖</div>
+                <div class="vid-topic-label">AI & Machine Learning</div>
+            </div>
+            <div class="play-overlay"><div class="play-btn" id="btn-1">⏸</div></div>
+            <div class="vid-overlay-info">
+                <div class="vid-overlay-title">How I built an emotion-aware study bot in 48 hrs</div>
+                <div class="vid-overlay-sub">3:42 · 1.2K views</div>
+            </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog-1" style="width:34%"></div></div>
+            <div class="reel-meta">
+            <div class="reel-poster-av" style="background:linear-gradient(135deg,#4CAF7D,#3B82F6)">RA</div>
+            <div class="reel-poster-info">
+                <div class="reel-poster-name">Riya Anand</div>
+                <div class="reel-poster-tag">#AI · #HackProject · CSE Year 2</div>
+            </div>
+            <div class="reel-actions">
+                <div class="reel-act-btn liked" onclick="toggleLike(event,this)">❤️ 284</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">💬 42</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">🔗 Share</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Reel 2 -->
+        <div class="reel-card" data-id="2" onclick="togglePlay(this)">
+            <div class="reel-video-wrap vid-bg-2">
+            <div class="vid-placeholder">
+                <div class="vid-icon-big">🌱</div>
+                <div class="vid-topic-label">Sustainability & Campus</div>
+            </div>
+            <div class="play-overlay"><div class="play-btn" id="btn-2">▶</div></div>
+            <div class="vid-overlay-info">
+                <div class="vid-overlay-title">Our zero-waste campus project — 3 months update</div>
+                <div class="vid-overlay-sub">5:10 · 874 views</div>
+            </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog-2"></div></div>
+            <div class="reel-meta">
+            <div class="reel-poster-av" style="background:linear-gradient(135deg,#059669,#34D399)">SM</div>
+            <div class="reel-poster-info">
+                <div class="reel-poster-name">Sahil Mehta</div>
+                <div class="reel-poster-tag">#Sustainability · #CampusLife · ENV Year 3</div>
+            </div>
+            <div class="reel-actions">
+                <div class="reel-act-btn" onclick="toggleLike(event,this)">🤍 156</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">💬 19</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">🔗 Share</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Reel 3 -->
+        <div class="reel-card" data-id="3" onclick="togglePlay(this)">
+            <div class="reel-video-wrap vid-bg-3">
+            <div class="vid-placeholder">
+                <div class="vid-icon-big">🚀</div>
+                <div class="vid-topic-label">Startup & Entrepreneurship</div>
+            </div>
+            <div class="play-overlay"><div class="play-btn" id="btn-3">▶</div></div>
+            <div class="vid-overlay-info">
+                <div class="vid-overlay-title">Pitch deck teardown: what investors actually want</div>
+                <div class="vid-overlay-sub">6:28 · 2.1K views</div>
+            </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog-3"></div></div>
+            <div class="reel-meta">
+            <div class="reel-poster-av" style="background:linear-gradient(135deg,#DC2626,#F59E0B)">PK</div>
+            <div class="reel-poster-info">
+                <div class="reel-poster-name">Priya Kapoor</div>
+                <div class="reel-poster-tag">#Startup · #Pitch · MBA Year 1</div>
+            </div>
+            <div class="reel-actions">
+                <div class="reel-act-btn" onclick="toggleLike(event,this)">🤍 543</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">💬 87</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">🔗 Share</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Reel 4 -->
+        <div class="reel-card" data-id="4" onclick="togglePlay(this)">
+            <div class="reel-video-wrap vid-bg-4">
+            <div class="vid-placeholder">
+                <div class="vid-icon-big">🎨</div>
+                <div class="vid-topic-label">Design & UX</div>
+            </div>
+            <div class="play-overlay"><div class="play-btn" id="btn-4">▶</div></div>
+            <div class="vid-overlay-info">
+                <div class="vid-overlay-title">Designing for Gen Z — 5 UX patterns that actually work</div>
+                <div class="vid-overlay-sub">4:15 · 996 views</div>
+            </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog-4"></div></div>
+            <div class="reel-meta">
+            <div class="reel-poster-av" style="background:linear-gradient(135deg,#6366F1,#EC4899)">VN</div>
+            <div class="reel-poster-info">
+                <div class="reel-poster-name">Vani Nair</div>
+                <div class="reel-poster-tag">#UIDesign · #UserResearch · Design Year 2</div>
+            </div>
+            <div class="reel-actions">
+                <div class="reel-act-btn" onclick="toggleLike(event,this)">🤍 321</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">💬 55</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">🔗 Share</div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Reel 5 -->
+        <div class="reel-card" data-id="5" onclick="togglePlay(this)">
+            <div class="reel-video-wrap vid-bg-5">
+            <div class="vid-placeholder">
+                <div class="vid-icon-big">🔬</div>
+                <div class="vid-topic-label">Research & Science</div>
+            </div>
+            <div class="play-overlay"><div class="play-btn" id="btn-5">▶</div></div>
+            <div class="vid-overlay-info">
+                <div class="vid-overlay-title">My research paper got accepted — here's how I did it</div>
+                <div class="vid-overlay-sub">7:02 · 1.8K views</div>
+            </div>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog-5"></div></div>
+            <div class="reel-meta">
+            <div class="reel-poster-av" style="background:linear-gradient(135deg,#7C3AED,#C026D3)">AG</div>
+            <div class="reel-poster-info">
+                <div class="reel-poster-name">Aditi Gupta</div>
+                <div class="reel-poster-tag">#Research · #IEEE · BioTech Year 4</div>
+            </div>
+            <div class="reel-actions">
+                <div class="reel-act-btn" onclick="toggleLike(event,this)">🤍 712</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">💬 143</div>
+                <div class="reel-act-btn" onclick="event.stopPropagation()">🔗 Share</div>
+            </div>
+            </div>
+        </div>
+
+        </div><!-- end reel-feed -->
+    </div><!-- end center -->
+
+    <!-- RIGHT PANEL -->
+    <div class="right">
+
+        <!-- STATS -->
+        <div class="panel-section">
+        <div class="panel-head">
+            <div class="panel-title">Your Network</div>
+        </div>
+        <div class="stat-chips">
+            <div class="stat-chip">
+            <div class="stat-chip-val">248</div>
+            <div class="stat-chip-label">Connections</div>
+            <div class="stat-chip-delta up">↑ 12 this week</div>
+            </div>
+            <div class="stat-chip">
+            <div class="stat-chip-val">1.4K</div>
+            <div class="stat-chip-label">Reel Views</div>
+            <div class="stat-chip-delta up">↑ 340 today</div>
+            </div>
+            <div class="stat-chip">
+            <div class="stat-chip-val">7</div>
+            <div class="stat-chip-label">Active Projects</div>
+            <div class="stat-chip-delta up">↑ 2 new</div>
+            </div>
+            <div class="stat-chip">
+            <div class="stat-chip-val">92%</div>
+            <div class="stat-chip-label">Match Score</div>
+            <div class="stat-chip-delta up">↑ Top 5%</div>
+            </div>
+        </div>
+        </div>
+
+        <!-- TRENDING -->
+        <div class="panel-section">
+        <div class="panel-head">
+            <div class="panel-title">🔥 Trending on Campus</div>
+            <div class="panel-link">See all</div>
+        </div>
+        <div class="trending-list">
+            <div class="trend-row">
+            <div class="trend-rank">1</div>
+            <div class="trend-tag-wrap">
+                <div class="trend-tag">#HackAIFest</div>
+                <div class="trend-count">1,240 posts</div>
+            </div>
+            <div class="trend-badge hot">HOT</div>
+            </div>
+            <div class="trend-row">
+            <div class="trend-rank">2</div>
+            <div class="trend-tag-wrap">
+                <div class="trend-tag">#ZeroWaste2025</div>
+                <div class="trend-count">874 posts</div>
+            </div>
+            <div class="trend-badge new">NEW</div>
+            </div>
+            <div class="trend-row">
+            <div class="trend-rank">3</div>
+            <div class="trend-tag-wrap">
+                <div class="trend-tag">#StartupPitch</div>
+                <div class="trend-count">642 posts</div>
+            </div>
+            <div class="trend-badge rising">↑ RISING</div>
+            </div>
+            <div class="trend-row">
+            <div class="trend-rank">4</div>
+            <div class="trend-tag-wrap">
+                <div class="trend-tag">#ResearchDay</div>
+                <div class="trend-count">511 posts</div>
+            </div>
+            <div class="trend-badge new">NEW</div>
+            </div>
+            <div class="trend-row">
+            <div class="trend-rank">5</div>
+            <div class="trend-tag-wrap">
+                <div class="trend-tag">#DesignSprint</div>
+                <div class="trend-count">390 posts</div>
+            </div>
+            <div class="trend-badge hot">HOT</div>
+            </div>
+        </div>
+        </div>
+
+        <!-- SUGGESTED MATCHES -->
+        <div class="panel-section">
+        <div class="panel-head">
+            <div class="panel-title">🎯 Suggested for You</div>
+            <div class="panel-link">View all</div>
+        </div>
+        <div class="match-scroll">
+            <div class="match-item">
+            <div class="match-av" style="background:linear-gradient(135deg,#4CAF7D,#3B82F6)">NK</div>
+            <div class="match-info">
+                <div class="match-name">Naina Kapoor</div>
+                <div class="match-detail">AI · Design · CSE Y2</div>
+            </div>
+            <div class="match-connect-btn" onclick="connectUser(this)">+ Connect</div>
+            </div>
+            <div class="match-item">
+            <div class="match-av" style="background:linear-gradient(135deg,#F59E0B,#EF4444)">RS</div>
+            <div class="match-info">
+                <div class="match-name">Rohan Sharma</div>
+                <div class="match-detail">ML · Startup · ECE Y3</div>
+            </div>
+            <div class="match-connect-btn" onclick="connectUser(this)">+ Connect</div>
+            </div>
+            <div class="match-item">
+            <div class="match-av" style="background:linear-gradient(135deg,#7C3AED,#EC4899)">AG</div>
+            <div class="match-info">
+                <div class="match-name">Ananya G.</div>
+                <div class="match-detail">Research · Writing · BIO Y4</div>
+            </div>
+            <div class="match-connect-btn" onclick="connectUser(this)">+ Connect</div>
+            </div>
+            <div class="match-item">
+            <div class="match-av" style="background:linear-gradient(135deg,#0EA5E9,#6366F1)">KP</div>
+            <div class="match-info">
+                <div class="match-name">Karan Patel</div>
+                <div class="match-detail">Code · Robotics · EE Y2</div>
+            </div>
+            <div class="match-connect-btn" onclick="connectUser(this)">+ Connect</div>
+            </div>
+            <div class="match-item">
+            <div class="match-av" style="background:linear-gradient(135deg,#059669,#065F46)">MM</div>
+            <div class="match-info">
+                <div class="match-name">Megha Mishra</div>
+                <div class="match-detail">Sustainability · Policy · MGT Y1</div>
+            </div>
+            <div class="match-connect-btn" onclick="connectUser(this)">+ Connect</div>
+            </div>
+        </div>
+        </div>
+
+    </div><!-- end right -->
+    </div><!-- end main -->
+
+<script src="script.js"></script>
+</body>
+</html>
