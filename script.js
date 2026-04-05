@@ -1,13 +1,3 @@
-// Firebase imports
-import { auth, db } from "./firebase.js";
-
-import { createUserWithEmailAndPassword }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-import { setDoc, doc }
-from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-
 // avatar
 function pickAvatar(inp) {
   if (!inp.files?.[0]) return;
@@ -17,15 +7,12 @@ function pickAvatar(inp) {
   document.getElementById('avEmoji').style.display = 'none';
 }
 
-
 // chips
 function toggleChip(el) {
   el.classList.toggle('on');
   const n = document.querySelectorAll('.chip.on').length;
-  const el2 = document.getElementById('skillCount');
-  el2.textContent = n + ' selected';
+  document.getElementById('skillCount').textContent = n + ' selected';
 }
-
 
 // validation
 function vBasic(inp) {
@@ -42,86 +29,83 @@ function vEmail(inp) {
 function vPw(inp) {
   const v = inp.value;
   let s = 0;
-
   if (v.length >= 8) s++;
   if (/[A-Z]/.test(v)) s++;
   if (/[0-9]/.test(v)) s++;
   if (/[^A-Za-z0-9]/.test(v)) s++;
-
-  const pct = [0,25,50,75,100][s];
-  document.getElementById('sfill').style.width = pct + "%";
-
-  inp.classList.toggle('ok', s===4);
+  const pct = [0, 25, 50, 75, 100][s];
+  document.getElementById('sfill').style.width = pct + '%';
+  inp.classList.toggle('ok', s === 4);
 }
 
+function vSelect(sel) {
+  sel.classList.toggle('ok', sel.value !== '');
+}
 
-// password toggle
 function togglePw(btn) {
   const inp = document.getElementById('password');
   const show = inp.type === 'password';
-
   inp.type = show ? 'text' : 'password';
   btn.textContent = show ? '🙈' : '👁';
 }
 
+function updateChar(ta) {
+  document.getElementById('charCount').textContent = ta.value.length + ' / 200';
+}
 
-// submit
+// ── Submit ──────────────────────────────────────────────
 async function doSubmit() {
+  const fullName   = document.getElementById('fullName').value.trim();
+  const email      = document.getElementById('email').value.trim();
+  const password   = document.getElementById('password').value;
+  const college    = document.getElementById('college').value.trim();
+  const branch     = document.getElementById('branch').value;
+  const year       = document.getElementById('year').value;
+  const rollNumber = document.querySelector('input[placeholder="e.g. 21CS1001"]').value.trim();
+  const bio        = document.getElementById('bio').value.trim();
+  const skills     = [...document.querySelectorAll('.chip.on')]
+                       .map(c => c.textContent.trim());
 
-  const fullName = document.getElementById("fullName").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const college = document.getElementById("college").value;
-
-  // NEW fields
-  const branch = document.getElementById("branch").value;
-  const year = document.getElementById("year").value;
-
-  if(!fullName || !email || !password || !college){
-    alert("Please fill all fields");
+  if (!fullName || !email || !password || !college) {
+    alert('Please fill all required fields.');
     return;
   }
 
+  const btn = document.getElementById('ctaBtn');
+  btn.disabled = true;
+  btn.querySelector('.cta-inner').textContent = 'Creating account…';
+
   try {
-
-    // create firebase account
-    const userCredential =
-    await createUserWithEmailAndPassword(auth,email,password);
-
-    const user = userCredential.user;
-
-    // save profile to firestore
-    await setDoc(doc(db,"users",user.uid),{
-
-      name: fullName,
-      email: email,
-      college: college,
-      branch: branch,
-      year: year
-
+    const res = await fetch('http://localhost/CampusConnect/register.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fullName, email, password, college, branch, year, rollNumber, bio, skills })
     });
 
-    alert("Signup successful!");
+    const data = await res.json();
 
-    // redirect to dashboard
-    window.location.href = "Dashboard/dashboard.html";
-
+    if (data.success) {
+      alert('🎉 Account created! Welcome to CampusConnect.');
+      window.location.href = 'Dashboard/dashboard.html';
+    } else {
+      alert('Error: ' + data.error);
+      btn.disabled = false;
+      btn.querySelector('.cta-inner').innerHTML = 'Find my people <span class="cta-arrow">→</span>';
+    }
+  } catch (err) {
+    alert('Could not reach server. Make sure XAMPP Apache is running.');
+    btn.disabled = false;
+    btn.querySelector('.cta-inner').innerHTML = 'Find my people <span class="cta-arrow">→</span>';
   }
-
-  catch(error){
-
-    alert(error.message);
-
-  }
-
 }
 
-
-// expose functions for HTML
-window.doSubmit = doSubmit;
-window.pickAvatar = pickAvatar;
-window.toggleChip = toggleChip;
-window.togglePw = togglePw;
-window.vBasic = vBasic;
-window.vEmail = vEmail;
-window.vPw = vPw;
+// expose to HTML
+window.doSubmit    = doSubmit;
+window.pickAvatar  = pickAvatar;
+window.toggleChip  = toggleChip;
+window.togglePw    = togglePw;
+window.vBasic      = vBasic;
+window.vEmail      = vEmail;
+window.vPw         = vPw;
+window.vSelect     = vSelect;
+window.updateChar  = updateChar;
