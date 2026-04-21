@@ -85,6 +85,9 @@ async function doSubmit() {
     const data = await res.json();
 
     if (data.success) {
+      localStorage.setItem('cc_name', fullName);   
+      localStorage.setItem('cc_branch', branch);  
+      localStorage.setItem('cc_year', year);        
       alert('🎉 Account created! Welcome to CampusConnect.');
       window.location.href = 'Dashboard/dashboard.html';
     } else {
